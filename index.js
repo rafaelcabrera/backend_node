@@ -14,7 +14,10 @@ app.get('/nueva-ruta', (req, res) =>{
 app.get('/products', (req, res) =>{ //retorna un array de productos
   //despues instalamos faker y creamos nuevos productos.
   const products =[];
-  for (let index = 0; index < 100; index++) {
+  const {size} = req.query;
+  const limit = size || 10;
+
+  for (let index = 0; index < limit; index++) {
     products.push({
         name: faker.commerce.productName(),
         price: parseInt(faker.commerce.price(),10), // viene como string y lo quiero como número.
@@ -25,8 +28,11 @@ app.get('/products', (req, res) =>{ //retorna un array de productos
   });
 
 
+/* Que cumpla una funcionalidad especifica */
 
-
+app.get('/products/filter', (req, res)=>{
+  res.send('soy un filter')
+});
 
 app.get('/products/:id', (req, res) =>{
   // const id = req.params.id;
