@@ -6,7 +6,7 @@ class ProductsService {
     this.generate(); // cada vez que genere una isntancia va a empezar y generar los 100 productos iniciales.
 
   }
-  generate(){
+  async generate(){
 
     const limit = 100
 
@@ -19,7 +19,7 @@ class ProductsService {
       })
     }
   };
-  create(data){
+  async create(data){
     const newProduct = {
       id : faker.datatype.uuid(),
       ...data //spread operation para unir lo que le paso en data
@@ -27,14 +27,14 @@ class ProductsService {
     this.products.push(newProduct);
     return this.products;
   }
-  find(){
+  async find(){
 return this.products;
   }
 
-  findOne(id){
+  async findOne(id){
     return this.products.find(item => item.id === id);
   }
-  update(id, changes){ //necesito saber la posición donde está
+  async update(id, changes){ //necesito saber la posición donde está
     const index = this.products.findIndex(item => item.id === id);
 
     if (index === -1){
@@ -48,7 +48,7 @@ return this.products;
       return this.products[index];
     }
 
-  delete(id){
+    async delete(id){
     const index = this.products.findIndex(item => item.id === id);
 
     if (index === -1){
