@@ -19,8 +19,13 @@ class ProductsService {
       })
     }
   };
-  create(){
-
+  create(data){
+    const newProduct = {
+      id : faker.datatype.uuid(),
+      ...data //spread operation para unir lo que le paso en data
+    }
+    this.products.push(newProduct);
+    return this.products;
   }
   find(){
 return this.products;
@@ -29,10 +34,30 @@ return this.products;
   findOne(id){
     return this.products.find(item => item.id === id);
   }
-  update(){
+  update(id, changes){ //necesito saber la posición donde está
+    const index = this.products.findIndex(item => item.id === id);
 
-  }
-  delete(){
+    if (index === -1){
+      throw new Error("Product not found")
+    }
+      const product = this.products[index]
+      this.products[index] = {
+        ...product,
+        ...changes //con spread opeator concateno
+      }
+      return this.products[index];
+    }
+
+  delete(id){
+    const index = this.products.findIndex(item => item.id === id);
+
+    if (index === -1){
+      throw new Error("Product not found");
+    }else{
+
+      this.products.splice(index, 1); //esto elimina
+      return {id};
+    }
 
   }
 }

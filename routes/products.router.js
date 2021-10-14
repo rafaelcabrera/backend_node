@@ -26,6 +26,7 @@ router.get('/:id', (req, res) =>{
 
 router.post('/', (req, res)=>{
   const body = req.body;
+  const newProduct = service.create(body); //este es el paso, luego de crear el servicio, le paso al body, lo que alla es data.
   res.status(201).json({
     message: 'created',
     data: body
@@ -33,24 +34,19 @@ router.post('/', (req, res)=>{
 });
 
 
-router.patch('/id', (req, res)=>{ //funciona igual que put pero de forma parcial
+router.patch('/:id', (req, res)=>{ //funciona igual que put pero de forma parcial
   const {id} = req.params;
   const body = req.body;
-  res.json({
-    message: 'update',
-    data : body,
-    id,
-  });
+  const product = service.update(id,body); //lamo al servicio, es el paso siguiente a crear el servicio.
+  res.json(product);
 });
 
 
 router.delete('/:id', (req, res)=>{
   const {id} = req.params;
   const body = req.body;
-  res.json({
-    message: 'deleted',
-   id,
-  });
+  const product = service.delete(id)
+  res.json(rta);
 });
 
 module.exports = router; //exporto las rutas.
