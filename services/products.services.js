@@ -28,8 +28,9 @@ class ProductsService {
     return this.products;
   }
   async find(){
+    
 return this.products;
-  }
+}
 
   async findOne(id){
     return this.products.find(item => item.id === id);

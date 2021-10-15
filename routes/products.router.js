@@ -5,15 +5,15 @@ const ProductsService = require ('../services/products.services.js');
 const router = express.Router(); //la creo porque no tengo acceso, como app.get
 const service = new ProductsService(); //creo una instancia.
 
-router.get('/', (req, res) =>{ //retorna un array de productos
+router.get('/', async (req, res) =>{ //retorna un array de productos
   //despues instalamos faker y creamos nuevos productos.
-  const products = service.find();
+  const products = await service.find();
   res.json(products);
   // const {size} = req.query;
   });
 
 
-router.get('/filter', (req, res)=>{
+router.get('/filter', async (req, res)=>{
   res.send('soy un filter')
 });
 
