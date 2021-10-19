@@ -17,11 +17,17 @@ router.get('/filter', async (req, res)=>{
   res.send('soy un filter')
 });
 
-router.get('/:id', async (req, res) =>{
+router.get('/:id', async (req, res, next) =>{ //le agrego el next del middleware, y agrego try catch
   // const id = req.params.id;
-  const {id} = req.params;
-  const product = await service.findOne(id);
-  res.json(product);
+  try{
+    const {id} = req.params;
+    const product = await service.findOne(id);
+    res.json(product);
+  }
+  catch(error){
+next(error); //acá lo hacemos de forma explícita.
+  }
+
 });
 
 router.post('/', async (req, res)=>{
@@ -35,10 +41,18 @@ router.post('/', async (req, res)=>{
 
 
 router.patch('/:id', async (req, res)=>{ //funciona igual que put pero de forma parcial
-  const {id} = req.params;
-  const body = req.body;
-  const product = await service.update(id,body); //lamo al servicio, es el paso siguiente a crear el servicio.
-  res.json(product);
+  try{
+    const {id} = req.params;
+    const body = req.body;
+    const product = await service.update(id,body); //lamo al servicio, es el paso siguiente a crear el servicio.
+    res.json(product);
+  }
+  catch(error){
+res.status(404).json({
+  message: error.message,
+});
+  }
+
 });
 
 

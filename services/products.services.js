@@ -38,6 +38,8 @@ return new Promise((resolve, reject) => {
 }
 
   async findOne(id){
+    const name = this.getTotal(); // getTotal no existe pero forzamos el error para probar los middleware,
+    //de acá tengo que ir al routing para modificar el asincronismo también
     return this.products.find(item => item.id === id);
   }
   async update(id, changes){ //necesito saber la posición donde está
