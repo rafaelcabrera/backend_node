@@ -1,6 +1,6 @@
 const faker = require('faker');
 
-class ProductsService {
+class CategoriesService {
   constructor(){
     this.products = [];
     this.generate(); // cada vez que genere una isntancia va a empezar y generar los 100 productos iniciales.
