@@ -7,7 +7,7 @@ const service = new ProductsService(); //creo una instancia.
 
 router.get('/', async (req, res) =>{ //retorna un array de productos
   //despues instalamos faker y creamos nuevos productos.
-  const products = await service.find();
+  const products = await service.find(); //aca espera los 5 segundos porque está siendo tratado de forma asíncrona
   res.json(products);
   // const {size} = req.query;
   });

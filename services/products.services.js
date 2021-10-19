@@ -27,9 +27,14 @@ class ProductsService {
     this.products.push(newProduct);
     return this.products;
   }
-  async find(){
-    
-return this.products;
+
+  async find(){ //acá simulamos una asincronía con una promesa
+// return this.products;
+return new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(this.products);
+  },5000); //se ve en el insomnia como claramente espera 5 segundos para devolver los 100 productos
+})
 }
 
   async findOne(id){
