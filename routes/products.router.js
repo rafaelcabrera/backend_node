@@ -1,6 +1,10 @@
 const express = require('express');
 const ProductsService = require ('../services/products.services.js');
 // const faker = require('faker'); ya no necesito faker porque lo uso en servicios
+const validatorHandler = require('./../middlewares/validator.handler')
+const {createProductSchema, updateProductSchema, getProductSchema} = require('../schemas/producs.schema')
+
+
 
 const router = express.Router(); //la creo porque no tengo acceso, como app.get
 const service = new ProductsService(); //creo una instancia.
@@ -17,7 +21,9 @@ router.get('/filter', async (req, res)=>{
   res.send('soy un filter')
 });
 
-router.get('/:id', async (req, res, next) =>{ //le agrego el next del middleware, y agrego try catch
+router.get('/:id',
+validatorHandler(getProductSchema, 'params'), //el creador del middleware, pero tenemos que definir cual tenemos que definir
+async (req, res, next) =>{ //le agrego el next del middleware, y agrego try catch
   // const id = req.params.id;
   try{
     const {id} = req.params;

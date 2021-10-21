@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/users', (req, res)=>{
-  const {limit, offset} = req.query;
+  const {limit, offset} = req.query; //averiguar que es limit y offset
   if (limit&&offset){
     res.json({
       limit: limit,
