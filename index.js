@@ -7,7 +7,7 @@ const port = 3000;
 
 app.use(express.json());
 
-app.get('/', (req, res) => { //reques y response, esto es una ruta inicial
+app.get('/', (req, res) => { //request y response, esto es una ruta inicial
   res.send('Hello World!');
 });
 

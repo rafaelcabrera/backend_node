@@ -50,7 +50,7 @@ router.patch('/:id', async (req, res)=>{ //funciona igual que put pero de forma 
   try{
     const {id} = req.params;
     const body = req.body;
-    const product = await service.update(id,body); //lamo al servicio, es el paso siguiente a crear el servicio.
+    const product = await service.update(id,body); //llamo al servicio, es el paso siguiente a crear el servicio.
     res.json(product);
   }
   catch(error){
