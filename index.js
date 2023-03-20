@@ -8,7 +8,7 @@ const port = 3000;
 app.use(express.json());
 
 app.get('/', (req, res) => { //reques y response, esto es una ruta inicial
-  res.send('Hello World! mi server en express');
+  res.send('Hello World!');
 });
 
 app.get('/nueva-ruta', (req, res) =>{

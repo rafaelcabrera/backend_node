@@ -22,7 +22,7 @@ router.get('/filter', async (req, res)=>{
 });
 
 router.get('/:id',
-validatorHandler(getProductSchema, 'params'), //el creador del middleware, pero tenemos que definir cual tenemos que definir
+validatorHandler(getProductSchema, 'params'), //el creador del middleware, pero tenemos que definir
 async (req, res, next) =>{ //le agrego el next del middleware, y agrego try catch
   // const id = req.params.id;
   try{
